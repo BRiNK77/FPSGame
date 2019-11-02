@@ -95,7 +95,7 @@ namespace UnityStandardAssets.Utility
                 // 2nd point may have been the 'last' point - a dupe of the first,
                 // (to give a value of max track distance instead of zero)
                 // but now it must be wrapped back to zero if that was the case.
-                p2n = p2n%numPoints;
+                p2n %= numPoints;
 
                 P0 = points[p0n];
                 P1 = points[p1n];

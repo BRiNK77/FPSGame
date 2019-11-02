@@ -151,7 +151,7 @@ namespace UnityStandardAssets.Utility.Inspector
                     }
                     else
                     {
-                        actionRect.width = actionRect.width + targetRect.width;
+                        actionRect.width += targetRect.width;
                         EditorGUI.PropertyField(actionRect, entry.FindPropertyRelative("action"), GUIContent.none);
                     }
 
