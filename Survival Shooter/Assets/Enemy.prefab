@@ -4757,7 +4757,10 @@ MonoBehaviour:
   HP: 2
   player: {fileID: 0}
   enemy: {fileID: 4029498462357782299}
+  mainCam: {fileID: 0}
+  death: 0
   minDist: 1
+  deathTime: 4
 --- !u!136 &-1475535076533298296
 CapsuleCollider:
   m_ObjectHideFlags: 0

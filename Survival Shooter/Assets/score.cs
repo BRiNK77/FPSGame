@@ -18,4 +18,9 @@ public class score : MonoBehaviour
     {
         scoreN.text = "Score: " + trueS.ToString();
     }
+
+    public void newScore(int num)
+    {
+        trueS = trueS + num;
+    }
 }

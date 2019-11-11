@@ -2,23 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UI;
+
 
 public class EnemyCon : MonoBehaviour
 {
     Animator anim;
-    public int HP = 4; // the amount of health for the enemy
+    public int HP = 2; // the amount of health for the enemy
     //int DMG = 1;
     public GameObject player;
     public GameObject enemy;
+    public Camera mainCam;
     public bool death = false;
-    
     public int minDist = 1;
+    public float deathTime = 4.0f;
 
     void Start()
     {
         anim = GetComponent<Animator>(); // gets animator for setting up variables
         player = GameObject.FindGameObjectWithTag("Player");
+        mainCam = Camera.main;
     }
 
     // Update is called once per frame
@@ -32,7 +34,6 @@ public class EnemyCon : MonoBehaviour
         // sets floats in the animator based off in game floats
         anim.SetFloat("forward", forward);
         anim.SetFloat("sideways", sideways);
-       // anim.SetBool("dead", health);
         anim.SetFloat("attack", attack);
 
         // sends enemy to player position
@@ -43,19 +44,18 @@ public class EnemyCon : MonoBehaviour
             GetComponent<NavMeshAgent>().destination = transform.position;
             attack = 1.0f;
             anim.SetFloat("attack", attack);
+            Camera mainCam = Camera.main;
 
         }
 
         
         // destroys enemy after a set time to allow death animation
-        if(HP <= 0)
+        if(HP <= 0 )
         {
             death = true;
             anim.SetBool("dead", death);
             GetComponent<NavMeshAgent>().speed = 0;
-            float deathTime = 4.0f;
             Destroy(enemy, deathTime);
-            
         }
         
         
@@ -71,5 +71,9 @@ public class EnemyCon : MonoBehaviour
         HP = HP - DMG;
     }
     
-    
+    public void isDead()
+    {
+        this.gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        mainCam.GetComponent<Shoot>().applyKill();
+    }
 }

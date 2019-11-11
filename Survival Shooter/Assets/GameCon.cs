@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameCon : MonoBehaviour
 {
@@ -15,13 +16,17 @@ public class GameCon : MonoBehaviour
     public static int waveCon = 5;
     public static int count;
     public static int num;
-    //public static int score = 0;
+    public static int roundNum = 1;
+    public static int wave;
+    //public Text ScoreNum;
+    public Text waveNumber;
+    public Text waveRemain;
 
     // Spawn variables
 
     float spawnTime = 4.0f;
-    //bool cleared = false;
-    //public static int scaleE = 2;
+    bool cleared = false;
+    public static int scaleE = 2;
 
     void Start()
     {
@@ -39,30 +44,33 @@ public class GameCon : MonoBehaviour
             count -= 1;
         }
 
-        /*
-         * round end and enemy killed check here, work in progress
+        
         if (cleared)
         {
+            // possible next round declaration
             roundNum = roundNum + 1; // updates round number when all monsters cleared
+            waveNumber.GetComponent<waveNum>().setWave(roundNum);
             waveCon = (waveCon + 2);
-            wave = waveCon;
+            waveRemain.GetComponent<WaveLeft>().setWave(waveCon);
+            waveRemain.GetComponent<WaveLeft>().resetKills();
+            count = waveCon;
             cleared = false;
-        } else
-        {
-            
-            if(killed == wave)
-            {
-                cleared = true;
-            }
         }
-        */
+        
+
+        
+        
     }
 
     public void SpawnEnemy()
     {
-        num = Random.Range(0, 4);
+        num = Random.Range(0, 7);
       // spawns a clone of a given prefab, in order to create multiple instances that can be spawned and deleted 
       spawnClones[0] = Instantiate(mutant, spawnLocs[num].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
          
+    }
+    public void setCleared(bool con)
+    {
+        cleared = con;
     }
 }

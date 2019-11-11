@@ -17,10 +17,11 @@ public class waveNum : MonoBehaviour
     void Update()
     {
         waveN.text = "Wave: " + wave.ToString();
-        if (cleared)
-        {
-            wave += 1;
-            cleared = false;
-        }
+        
+    }
+
+    public void setWave(int num)
+    {
+        wave = num;
     }
 }

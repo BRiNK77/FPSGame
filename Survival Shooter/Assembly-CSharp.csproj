@@ -65,6 +65,7 @@
     <Compile Include="Assets\EnemyCon.cs" />
     <Compile Include="Assets\GameCon.cs" />
     <Compile Include="Assets\LoadNextScene.cs" />
+    <Compile Include="Assets\MobilityArts\SciFiHandGun\Scripts\OrbitAroundTarget.cs" />
     <Compile Include="Assets\quit.cs" />
     <Compile Include="Assets\score.cs" />
     <Compile Include="Assets\Shoot.cs" />
